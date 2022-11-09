@@ -12,7 +12,7 @@ export default {
                     <span class="sr-only">Home</span>
                     <span class="icon logo" aria-hidden="true"></span>
                     <div class="logo-text">
-                        <span class="logo-title">Elegant</span>
+                        <span class="logo-title">Sinau</span>
                         <span class="logo-subtitle">Dashboard</span>
                     </div>
 
@@ -35,7 +35,8 @@ export default {
                                 <span class="icon arrow-down" aria-hidden="true"></span>
                             </span>
                         </a>
-                        <ul class="cat-sub-menu">
+                        <!-- <ul class="cat-sub-menu"> -->
+                        <ul>
                             <li>
                                 <router-link to="/products">Show Products</router-link>
                             </li>
@@ -52,7 +53,8 @@ export default {
                                 <span class="icon arrow-down" aria-hidden="true"></span>
                             </span>
                         </a>
-                        <ul class="cat-sub-menu">
+                        <!-- <ul class="cat-sub-menu"> -->
+                        <ul>
                             <li>
                                 <router-link to="/suppliers">Show Suppliers</router-link>
                             </li>
@@ -102,8 +104,8 @@ export default {
             <a href="##" class="sidebar-user">
                 <span class="sidebar-user-img">
                     <picture>
-                        <source srcset="../assets/elegant/img/avatar/avatar-illustrated-02.webp" type="image/webp"><img
-                            src="../assets/elegant/img/avatar/avatar-illustrated-02.png" alt="User name">
+                        <source srcset="../assets/img/avatar/avatar-illustrated-02.webp" type="image/webp"><img
+                            src="../assets/img/avatar/avatar-illustrated-02.png" alt="User name">
                     </picture>
                 </span>
                 <div class="sidebar-user-info">

@@ -87,9 +87,8 @@ export default {
                         <span class="sr-only">My profile</span>
                         <span class="nav-user-img">
                             <picture>
-                                <source srcset="../assets/elegant/img/avatar/avatar-illustrated-02.webp"
-                                    type="image/webp"><img src="../assets/elegant/img/avatar/avatar-illustrated-02.png"
-                                    alt="User name">
+                                <source srcset="../assets/img/avatar/avatar-illustrated-02.webp" type="image/webp"><img
+                                    src="../assets/img/avatar/avatar-illustrated-02.png" alt="User name">
                             </picture>
                         </span>
                     </button>

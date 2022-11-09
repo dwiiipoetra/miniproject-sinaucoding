@@ -6,9 +6,9 @@ import router from "./router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 // template
-import "./assets/elegant/css/style.min.css";
-import "./assets/elegant/js/script.js";
-import "./assets/elegant/plugins/chart.min.js";
-import "./assets/elegant/plugins/feather.min.js";
+import "./assets/css/style.min.css";
+import "./assets/js/script.js";
+import "./assets/plugins/chart.min.js";
+import "./assets/plugins/feather.min.js";
 
 createApp(App).use(router).mount("#app");
