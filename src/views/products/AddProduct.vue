@@ -2,10 +2,65 @@
 import Sidebar from "../../components/Sidebar.vue"
 import MainNav from "../../components/MainNav.vue"
 import Footer from "../../components/Footer.vue";
+import axios from "axios";
 
 export default {
     components: {
         Sidebar, MainNav, Footer
+    },
+    data() {
+        return {
+            productName: "",
+            price: "",
+            stock: "",
+            isSuccess: false,
+            suppliers: [],
+            supplier: [],
+            id: ""
+        };
+    },
+    mounted() {
+        axios.get("supplier/find-all", { params: { offset: 0, limit: 500 } }).then((response) => {
+            let data = response.data.data;
+            // show v-select
+            data.forEach((item) => {
+                this.suppliers.push({
+                    label: item.namaSupplier,
+                    code: item.id,
+                });
+            });
+            // console.log(this.suppliers);
+            // data.forEach((dataSupplier) => {
+            //     this.supplier.push({
+            //         id: dataSupplier.id,
+            //         namaSupplier: dataSupplier.namaSupplier,
+            //         alamat: dataSupplier.alamat,
+            //         noTelp: dataSupplier.noTelp,
+            //     });
+            // });
+        });
+    },
+    methods: {
+        onAddProduct() {
+            const objProduct = {
+                namaBarang: this.productName,
+                harga: this.price,
+                stok: this.stock,
+                supplier: this.supplier
+            }
+            console.log(objProduct);
+            // axios.post(`barang/create`, {
+            //     namaBarang: this.productName,
+            //     harga: this.price,
+            //     stok: this.stock,
+            //     supplier: this.supplier
+            // }).then(response => {
+            //     this.isSuccess = true
+            //     console.log(response.data)
+            // }).catch(error => {
+            //     console.log(error)
+            // })
+        },
     }
 }
 </script>
@@ -27,29 +82,28 @@ export default {
 
                     <div class="row">
                         <div class="col-lg-12 px-5 my-2">
-                            <form id="contactForm">
+                            <div class="alert alert-success" v-if="isSuccess">Product Succesfully Added</div>
+                            <form id="productsForm" @submit.prevent="onAddProduct">
                                 <div class="mb-3">
                                     <label class="form-label" for="productName">Product Name</label>
-                                    <input class="form-control" id="productName" type="text" placeholder="Product Name"
-                                        required />
+                                    <input v-model="productName" class="form-control" id="productName" type="text"
+                                        placeholder="Product Name" required />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="price">Price</label>
-                                    <input class="form-control" id="price" type="text" placeholder="Price" required />
+                                    <input v-model="price" class="form-control" id="price" type="text"
+                                        placeholder="Price" required />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="stock">Stock</label>
-                                    <input class="form-control" id="stock" type="text" placeholder="Stock" required />
+                                    <input v-model="stock" class="form-control" id="stock" type="text"
+                                        placeholder="Stock" required />
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="supplier">Supplier</label>
-                                    <select class="form-select" id="supplier" aria-label="Supplier">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
+                                    <label class="form-label">Supplier</label>
+                                    <v-select :options="suppliers" :reduce="(label) => label.code" label="label"
+                                        v-model="id"></v-select>
+                                    <p>data yang dipilih adalah {{ id }}</p>
                                 </div>
                                 <div class="d-grid">
                                     <button class="btn btn-primary btn-lg" id="submitButton"

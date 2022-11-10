@@ -2,10 +2,38 @@
 import Sidebar from "../../components/Sidebar.vue"
 import MainNav from "../../components/MainNav.vue"
 import Footer from "../../components/Footer.vue";
+import axios from "axios";
 
 export default {
     components: {
         Sidebar, MainNav, Footer
+    },
+    data() {
+        return {
+            showSuppliers: []
+        }
+    }, mounted() {
+        this.getshowSuppliers()
+    }, methods: {
+        getshowSuppliers() {
+            axios.get("supplier/find-all", { params: { offset: 0, limit: 20 } })
+                .then(response => this.formatshowSuppliers(response.data))
+                .catch(err => console.log(err.response))
+        },
+        formatshowSuppliers(suppliers) {
+            for (let key in suppliers) {
+                this.showSuppliers.push({ ...suppliers[key], id: key })
+            }
+            // console.log(this.showSuppliers)
+        },
+        iterateIndex: function (index) {
+            return Number(index) + 1
+        },
+        // deleteSupplier() {
+        //     axios.delete("supplier/delete/id", {})
+        //         .then(response => console.log(response.data))
+        //         .catch(err => console.log(err.response))
+        // }
     }
 }
 </script>
@@ -31,48 +59,19 @@ export default {
                                 <table class="posts-table">
                                     <thead>
                                         <tr class="users-table-info">
-                                            <th>
-                                                <label class="users-table__checkbox ms-20">
-                                                    <input type="checkbox" class="check-all">Thumbnail
-                                                </label>
-                                            </th>
-                                            <th>Title</th>
-                                            <th>Author</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
+                                            <th>No</th>
+                                            <th>Supplier Name</th>
+                                            <th>Address</th>
+                                            <th>Phone</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <label class="users-table__checkbox">
-                                                    <input type="checkbox" class="check">
-                                                    <div class="categories-table-img">
-                                                        <picture>
-                                                            <source srcset="../../assets/img/categories/01.webp"
-                                                                type="image/webp"><img
-                                                                src="../../assets/img/categories/01.jpg" alt="category">
-                                                        </picture>
-                                                    </div>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                Starting your traveling blog with Vasco
-                                            </td>
-                                            <td>
-                                                <div class="pages-table-img">
-                                                    <picture>
-                                                        <source srcset="../../assets/img/avatar/avatar-face-04.webp"
-                                                            type="image/webp"><img
-                                                            src="../../assets/img/avatar/avatar-face-04.png"
-                                                            alt="User Name">
-                                                    </picture>
-                                                    Jenny Wilson
-                                                </div>
-                                            </td>
-                                            <td><span class="badge-pending">Pending</span></td>
-                                            <td>17.04.2021</td>
+                                        <tr v-for="(supplier, i) in showSuppliers[0]" :key="supplier.id">
+                                            <td>{{ iterateIndex(i) }}</td>
+                                            <td>{{ supplier.namaSupplier }}</td>
+                                            <td>{{ supplier.alamat }}</td>
+                                            <td>{{ supplier.noTelp }}</td>
                                             <td>
                                                 <span class="p-relative">
                                                     <button class="dropdown-btn transparent-btn" type="button"
@@ -82,9 +81,15 @@ export default {
                                                     </button>
                                                     <!-- <ul class="users-item-dropdown dropdown"> -->
                                                     <ul>
-                                                        <li><a href="##">Edit</a></li>
+                                                        <li>
+                                                            <router-link :to="`/supplier/${supplier.id}`">Edit
+                                                            </router-link>
+                                                        </li>
                                                         <!-- <li><a href="##">Quick edit</a></li> -->
-                                                        <li><a href="##">Trash</a></li>
+                                                        <li>
+                                                            <!-- <router-link :to="`/delete-supplier/${product.id}`">Delete
+                                                            </router-link> -->
+                                                        </li>
                                                     </ul>
                                                 </span>
                                             </td>

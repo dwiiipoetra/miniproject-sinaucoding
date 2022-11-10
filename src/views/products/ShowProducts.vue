@@ -2,10 +2,33 @@
 import Sidebar from "../../components/Sidebar.vue"
 import MainNav from "../../components/MainNav.vue"
 import Footer from "../../components/Footer.vue";
+import axios from "axios";
 
 export default {
     components: {
         Sidebar, MainNav, Footer
+    },
+    data() {
+        return {
+            showProducts: []
+        }
+    }, mounted() {
+        this.getShowProducts()
+    }, methods: {
+        getShowProducts() {
+            axios.get("barang/find-all", { params: { offset: 0, limit: 20 } })
+                .then(response => this.formatShowProducts(response.data))
+                .catch(err => console.log(err.response))
+        },
+        formatShowProducts(products) {
+            for (let key in products) {
+                this.showProducts.push({ ...products[key], id: key })
+            }
+            // console.log(this.showProducts)
+        },
+        iterateIndex: function (index) {
+            return Number(index) + 1
+        }
     }
 }
 </script>
@@ -31,22 +54,26 @@ export default {
                                 <table class="posts-table">
                                     <thead>
                                         <tr class="users-table-info">
-                                            <th>
+                                            <!-- <th>
                                                 <label class="users-table__checkbox ms-20">
                                                     <input type="checkbox" class="check-all">Thumbnail
                                                 </label>
-                                            </th>
-                                            <th>Title</th>
-                                            <th>Author</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
+                                            </th> -->
+                                            <th>No</th>
+                                            <th>Product Name</th>
+                                            <th>Stock</th>
+                                            <th>Price</th>
+                                            <th>Supplier Name</th>
+                                            <th>Supplier Address</th>
+                                            <th>Supplier Phone</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <label class="users-table__checkbox">
+                                        <tr v-for="(product, i) in showProducts[0]" :key="product.id">
+                                            <td>{{ iterateIndex(i) }}
+
+                                                <!-- <label class="users-table__checkbox">
                                                     <input type="checkbox" class="check">
                                                     <div class="categories-table-img">
                                                         <picture>
@@ -55,13 +82,9 @@ export default {
                                                                 src="../../assets/img/categories/01.jpg" alt="category">
                                                         </picture>
                                                     </div>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                Starting your traveling blog with Vasco
-                                            </td>
-                                            <td>
-                                                <div class="pages-table-img">
+                                                </label> -->
+
+                                                <!-- <div class="pages-table-img">
                                                     <picture>
                                                         <source srcset="../../assets/img/avatar/avatar-face-04.webp"
                                                             type="image/webp"><img
@@ -69,10 +92,28 @@ export default {
                                                             alt="User Name">
                                                     </picture>
                                                     Jenny Wilson
-                                                </div>
+                                                </div> -->
+
+                                                <!-- <span class="badge-pending">Pending</span> -->
                                             </td>
-                                            <td><span class="badge-pending">Pending</span></td>
-                                            <td>17.04.2021</td>
+                                            <td>{{ product.namaBarang }}</td>
+                                            <td>{{ product.stok }} pcs</td>
+                                            <td>{{ product.harga }}</td>
+                                            <td>
+                                                <template v-for="sup in product" :key="sup.id">
+                                                    {{ sup.namaSupplier }}
+                                                </template>
+                                            </td>
+                                            <td>
+                                                <template v-for="sup in product" :key="sup.id">
+                                                    {{ sup.alamat }}
+                                                </template>
+                                            </td>
+                                            <td>
+                                                <template v-for="sup in product" :key="sup.id">
+                                                    {{ sup.noTelp }}
+                                                </template>
+                                            </td>
                                             <td>
                                                 <span class="p-relative">
                                                     <button class="dropdown-btn transparent-btn" type="button"
@@ -82,9 +123,12 @@ export default {
                                                     </button>
                                                     <!-- <ul class="users-item-dropdown dropdown"> -->
                                                     <ul>
-                                                        <li><a href="##">Edit</a></li>
+                                                        <li>
+                                                            <router-link :to="`/product/${product.id}`">Edit
+                                                            </router-link>
+                                                        </li>
                                                         <!-- <li><a href="##">Quick edit</a></li> -->
-                                                        <li><a href="##">Trash</a></li>
+                                                        <!-- <li><a href="##">Delete</a></li> -->
                                                     </ul>
                                                 </span>
                                             </td>

@@ -1,4 +1,30 @@
 <script>
+import axios from 'axios';
+import setAuthHeader from "../utils/setAuthHeader"
+
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+      isSuccess: false
+    }
+  }, methods: {
+    onLoginUser() {
+      axios.post("auth/login",
+        {
+          username: this.username,
+          password: this.password
+        }).then(response => {
+          this.isSuccess = true
+          localStorage.setItem("userToken", response.data.data.token);
+          // set token as default header
+          setAuthHeader(response.data.data.token);
+        }).catch((err) => console.log(err.response))
+    }
+  }
+}
+
 </script>
 
 <template>
@@ -14,7 +40,8 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form>
+                <div class="alert alert-success" v-if="isSuccess">Login User Succesfully</div>
+                <form @submit.prevent="onLoginUser">
 
                   <div class="d-flex align-items-center mb-3">
                     <img src="../assets/logo.png" alt="logo" />
@@ -23,17 +50,17 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                   <div class="form-outline mb-4">
-                    <input type="text" id="username" class="form-control form-control-lg" />
                     <label class="form-label" for="username">Username</label>
+                    <input v-model="username" type="text" id="username" class="form-control border" required />
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="password" class="form-control form-control-lg" />
                     <label class="form-label" for="password">Password</label>
+                    <input v-model="password" type="password" id="password" class="form-control border" required />
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                    <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                   </div>
 
                   <a class="small text-muted" href="#">Forgot password?</a>

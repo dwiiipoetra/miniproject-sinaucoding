@@ -1,3 +1,7 @@
 a {
   text-decoration: none !important;
 }
+
+.users-table-info th:first-child {
+  padding-left: 20px;
+}

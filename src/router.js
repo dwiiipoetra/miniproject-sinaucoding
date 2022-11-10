@@ -5,7 +5,7 @@ export default createRouter({
   routes: [
     {
       path: "/",
-      component: () => import("./views/Home.vue"),
+      component: () => import("./views/Dashboard.vue"),
     },
     {
       path: "/login",
@@ -24,12 +24,20 @@ export default createRouter({
       component: () => import("./views/products/AddProduct.vue"),
     },
     {
+      path: "/product/:id",
+      component: () => import("./views/products/EditProduct.vue"),
+    },
+    {
       path: "/suppliers",
       component: () => import("./views/suppliers/ShowSuppliers.vue"),
     },
     {
       path: "/add-supplier",
       component: () => import("./views/suppliers/AddSupplier.vue"),
+    },
+    {
+      path: "/supplier/:id",
+      component: () => import("./views/suppliers/EditSupplier.vue"),
     },
   ],
 });

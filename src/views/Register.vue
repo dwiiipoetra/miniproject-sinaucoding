@@ -1,4 +1,29 @@
 <script>
+import axios from "axios";
+
+export default {
+    data() {
+        return {
+            username: "",
+            profileName: "",
+            password: "",
+            isSuccess: false
+        }
+    },
+    methods: {
+        onRegisterUser() {
+            axios.post("auth/register",
+                {
+                    username: this.username,
+                    profileName: this.profileName,
+                    password: this.password
+                }).then(response => {
+                    this.isSuccess = true
+                    // console.log(response.data)
+                })
+        },
+    }
+}
 </script>
 
 <template>
@@ -13,8 +38,8 @@
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-
-                                <form>
+                                <div class="alert alert-success" v-if="isSuccess">Register User Succesfully</div>
+                                <form @submit.prevent="onRegisterUser">
 
                                     <div class="d-flex align-items-center mb-3">
                                         <img src="../assets/logo.png" alt="logo" />
@@ -26,22 +51,25 @@
                                     </h5>
 
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="username" class="form-control form-control-lg" />
                                         <label class="form-label" for="username">Username</label>
+                                        <input v-model="username" type="text" id="username" class="form-control border"
+                                            required />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="profile" class="form-control form-control-lg" />
-                                        <label class="form-label" for="profile">Profile Name</label>
+                                        <label class="form-label" for="profileName">Profile Name</label>
+                                        <input v-model="profileName" type="text" id="profileName"
+                                            class="form-control border" required />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="password" class="form-control form-control-lg" />
                                         <label class="form-label" for="password">Password</label>
+                                        <input v-model="password" type="password" id="password"
+                                            class="form-control border" required />
                                     </div>
 
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="button">Register</button>
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Register</button>
                                     </div>
 
                                     <a class="small text-muted" href="#">Forgot password?</a>
