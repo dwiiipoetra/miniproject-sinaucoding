@@ -10,7 +10,8 @@ export default {
     },
     data() {
         return {
-            showSuppliers: []
+            showSuppliers: [],
+            isSuccess: false
         }
     }, mounted() {
         this.getshowSuppliers()
@@ -29,11 +30,14 @@ export default {
         iterateIndex: function (index) {
             return Number(index) + 1
         },
-        // deleteSupplier() {
-        //     axios.delete("supplier/delete/id", {})
-        //         .then(response => console.log(response.data))
-        //         .catch(err => console.log(err.response))
-        // }
+        deleteSupplier(id) {
+            axios.delete(`supplier/delete/${id}`)
+                .then(response => {
+                    // console.log(response.data)
+                    this.isSuccess = true
+                })
+                .catch(err => console.log(err.response))
+        }
     }
 }
 </script>
@@ -54,6 +58,9 @@ export default {
                     <h2 class="main-title">Suppliers</h2>
 
                     <div class="row">
+                        <div class="col-lg-3">
+                            <div class="alert alert-success" v-if="isSuccess">Supplier Succesfully Deleted</div>
+                        </div>
                         <div class="col-lg-12">
                             <div class="users-table table-wrapper">
                                 <table class="posts-table">
@@ -87,8 +94,8 @@ export default {
                                                         </li>
                                                         <!-- <li><a href="##">Quick edit</a></li> -->
                                                         <li>
-                                                            <!-- <router-link :to="`/delete-supplier/${product.id}`">Delete
-                                                            </router-link> -->
+                                                            <a href="#" @click="deleteSupplier(supplier.id)">Delete
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </span>

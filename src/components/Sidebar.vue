@@ -1,6 +1,14 @@
 <script>
-export default {
+import setAuthHeader from "../utils/setAuthHeader"
 
+export default {
+    methods: {
+        logoutUser() {
+            localStorage.removeItem('userToken');
+            setAuthHeader(false);
+            window.location.href = "/login"
+        }
+    }
 }
 </script>
 
@@ -85,9 +93,10 @@ export default {
                                 <span class="icon arrow-down" aria-hidden="true"></span>
                             </span>
                         </a>
-                        <ul class="cat-sub-menu">
+                        <!-- <ul class="cat-sub-menu"> -->
+                        <ul>
                             <li>
-                                <a href="users-01.html">Online (10)</a>
+                                <a href="#" @click="logoutUser">Logout</a>
                             </li>
                         </ul>
                     </li>

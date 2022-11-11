@@ -13,54 +13,62 @@ export default {
             productName: "",
             price: "",
             stock: "",
-            isSuccess: false,
             suppliers: [],
-            supplier: [],
-            id: ""
+            suppliersObject: [],
+            selectedID: "",
+            selectedSupplier: {},
+            isSuccess: false,
         };
     },
     mounted() {
         axios.get("supplier/find-all", { params: { offset: 0, limit: 500 } }).then((response) => {
-            let data = response.data.data;
+            let datas = response.data.data;
             // show v-select
-            data.forEach((item) => {
+            datas.forEach((item) => {
                 this.suppliers.push({
                     label: item.namaSupplier,
                     code: item.id,
                 });
             });
             // console.log(this.suppliers);
-            // data.forEach((dataSupplier) => {
-            //     this.supplier.push({
-            //         id: dataSupplier.id,
-            //         namaSupplier: dataSupplier.namaSupplier,
-            //         alamat: dataSupplier.alamat,
-            //         noTelp: dataSupplier.noTelp,
-            //     });
-            // });
+            // add to suppliersObject
+            datas.forEach((dataSuppliers) => {
+                this.suppliersObject.push({
+                    id: dataSuppliers.id,
+                    namaSupplier: dataSuppliers.namaSupplier,
+                    alamat: dataSuppliers.alamat,
+                    noTelp: dataSuppliers.noTelp,
+                });
+            });
+            // console.log(this.suppliersObject);
         });
     },
     methods: {
         onAddProduct() {
             const objProduct = {
-                namaBarang: this.productName,
                 harga: this.price,
+                id: "",
+                namaBarang: this.productName,
                 stok: this.stock,
-                supplier: this.supplier
+                supplier: this.selectedSupplier
             }
-            console.log(objProduct);
-            // axios.post(`barang/create`, {
-            //     namaBarang: this.productName,
-            //     harga: this.price,
-            //     stok: this.stock,
-            //     supplier: this.supplier
-            // }).then(response => {
-            //     this.isSuccess = true
-            //     console.log(response.data)
-            // }).catch(error => {
-            //     console.log(error)
-            // })
+            // console.log(objProduct);
+            axios.post(`barang/create`, objProduct).then(response => {
+                this.isSuccess = true
+                console.log(response.data)
+            }).catch(error => {
+                console.log(error)
+            })
         },
+    },
+    watch: {
+        selectedID(value) {
+            let datas = this.suppliersObject;
+            // get data object from selected id
+            this.selectedSupplier = datas.find(data => data.id === value)
+            // console.log(this.selectedSupplier)
+        }
+
     }
 }
 </script>
@@ -91,19 +99,25 @@ export default {
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="price">Price</label>
-                                    <input v-model="price" class="form-control" id="price" type="text"
-                                        placeholder="Price" required />
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">IDR</span>
+                                        <input v-model="price" class="form-control" id="price" type="text"
+                                            placeholder="Price" required />
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="stock">Stock</label>
-                                    <input v-model="stock" class="form-control" id="stock" type="text"
-                                        placeholder="Stock" required />
+                                    <div class="input-group mb-3">
+                                        <input v-model="stock" class="form-control" id="stock" type="text"
+                                            placeholder="Stock" required />
+                                        <span class="input-group-text">pcs</span>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Supplier</label>
                                     <v-select :options="suppliers" :reduce="(label) => label.code" label="label"
-                                        v-model="id"></v-select>
-                                    <p>data yang dipilih adalah {{ id }}</p>
+                                        v-model="selectedID"></v-select>
+                                    <!-- <p>Data yang dipilih adalah {{ selectedID }}</p> -->
                                 </div>
                                 <div class="d-grid">
                                     <button class="btn btn-primary btn-lg" id="submitButton"

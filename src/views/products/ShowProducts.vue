@@ -10,7 +10,8 @@ export default {
     },
     data() {
         return {
-            showProducts: []
+            showProducts: [],
+            isSuccess: false
         }
     }, mounted() {
         this.getShowProducts()
@@ -28,6 +29,14 @@ export default {
         },
         iterateIndex: function (index) {
             return Number(index) + 1
+        },
+        deleteProduct(id) {
+            axios.delete(`barang/delete/${id}`)
+                .then(response => {
+                    this.isSuccess = true
+                    // console.log(response.data)
+                })
+                .catch(err => console.log(err.response))
         }
     }
 }
@@ -49,6 +58,9 @@ export default {
                     <h2 class="main-title">Products</h2>
 
                     <div class="row">
+                        <div class="col-lg-3">
+                            <div class="alert alert-success" v-if="isSuccess">Product Succesfully Deleted</div>
+                        </div>
                         <div class="col-lg-12">
                             <div class="users-table table-wrapper">
                                 <table class="posts-table">
@@ -128,7 +140,10 @@ export default {
                                                             </router-link>
                                                         </li>
                                                         <!-- <li><a href="##">Quick edit</a></li> -->
-                                                        <!-- <li><a href="##">Delete</a></li> -->
+                                                        <li>
+                                                            <a href="#" @click="deleteProduct(product.id)">Delete
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </span>
                                             </td>

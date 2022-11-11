@@ -20,7 +20,7 @@ export default {
           localStorage.setItem("userToken", response.data.data.token);
           // set token as default header
           setAuthHeader(response.data.data.token);
-        }).catch((err) => console.log(err.response))
+        }).catch((err) => console.log(err))
     }
   }
 }
