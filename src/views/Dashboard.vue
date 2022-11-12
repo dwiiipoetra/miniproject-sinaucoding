@@ -17,13 +17,13 @@ export default {
         this.getShowProducts()
         this.getshowSuppliers()
     }, methods: {
-        getShowProducts() {
-            axios.get("barang/find-all", { params: { offset: 0, limit: 10 } })
+        async getShowProducts() {
+            await axios.get("barang/find-all", { params: { offset: 0, limit: 10 } })
                 .then(response => { this.showProducts = response.data.data })
                 .catch(err => console.log(err.response))
         },
-        getshowSuppliers() {
-            axios.get("supplier/find-all", { params: { offset: 0, limit: 10 } })
+        async getshowSuppliers() {
+            await axios.get("supplier/find-all", { params: { offset: 0, limit: 10 } })
                 .then(response => { this.showSuppliers = response.data.data })
                 .catch(err => console.log(err.response))
         }

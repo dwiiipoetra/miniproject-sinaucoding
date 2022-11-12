@@ -52,12 +52,13 @@ export default {
                 supplier: this.selectedSupplier
             }
             // console.log(objProduct);
-            axios.post(`barang/create`, objProduct).then(response => {
-                this.isSuccess = true
-                console.log(response.data)
-            }).catch(error => {
-                console.log(error)
-            })
+            axios.post(`barang/create`, objProduct)
+                .then(response => {
+                    this.isSuccess = true
+                    this.$router.push("/products")
+                    // console.log(response.data)
+                })
+                .catch(error => console.log(error))
         },
     },
     watch: {

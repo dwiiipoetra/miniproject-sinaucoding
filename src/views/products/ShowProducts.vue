@@ -16,20 +16,17 @@ export default {
     }, mounted() {
         this.getShowProducts()
     }, methods: {
-        getShowProducts() {
-            axios.get("barang/find-all", { params: { offset: 0, limit: 20 } })
+        async getShowProducts() {
+            await axios.get("barang/find-all", { params: { offset: 0, limit: 20 } })
                 .then(response => { this.showProducts = response.data.data })
                 .catch(err => console.log(err.response))
         },
         deleteProduct(id) {
-            let self = this
             axios.delete(`barang/delete/${id}`)
                 .then(response => {
-                    self.isSuccess = true
-                    self.getShowProducts()
-                    self.formatShowProducts()
-                    self.iterateIndex()
-                    self.$router.push('/products')
+                    this.isSuccess = true
+                    this.$router.push('/products')
+                    this.getShowProducts()
                     // console.log(response.data)
                 })
                 .catch(err => console.log(err.response))

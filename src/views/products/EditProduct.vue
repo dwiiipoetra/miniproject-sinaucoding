@@ -64,12 +64,14 @@ export default {
             }
             // console.log(objProduct);
             this.id = this.$route.params.id
-            axios.put(`barang/update/${this.id}`, objProduct).then(response => {
-                this.isSuccess = true
-                console.log(response.data)
-            }).catch(error => {
-                console.log(error)
-            })
+            axios.put(`barang/update/${this.id}`, objProduct)
+                .then(response => {
+                    this.isSuccess = true
+                    this.$router.push("/products")
+                    // console.log(response.data)
+                }).catch(error => {
+                    console.log(error)
+                })
         },
     },
     watch: {

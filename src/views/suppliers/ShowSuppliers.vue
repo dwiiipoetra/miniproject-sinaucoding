@@ -14,18 +14,20 @@ export default {
             isSuccess: false
         }
     }, mounted() {
-        this.getshowSuppliers()
+        this.getShowSuppliers()
     }, methods: {
-        getshowSuppliers() {
-            axios.get("supplier/find-all", { params: { offset: 0, limit: 20 } })
+        async getShowSuppliers() {
+            await axios.get("supplier/find-all", { params: { offset: 0, limit: 20 } })
                 .then(response => { this.showSuppliers = response.data.data })
                 .catch(err => console.log(err.response))
         },
         deleteSupplier(id) {
             axios.delete(`supplier/delete/${id}`)
                 .then(response => {
-                    // console.log(response.data)
                     this.isSuccess = true
+                    this.$router.push('/suppliers')
+                    this.getShowSuppliers()
+                    // console.log(response.data)
                 })
                 .catch(err => console.log(err.response))
         }

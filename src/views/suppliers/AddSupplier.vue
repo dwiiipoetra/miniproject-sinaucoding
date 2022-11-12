@@ -23,6 +23,7 @@ export default {
                 noTelp: this.phone,
             }).then(response => {
                 this.isSuccess = true
+                this.$router.push("/suppliers")
                 // console.log(response.data)
             }).catch(error => {
                 console.log(error)
