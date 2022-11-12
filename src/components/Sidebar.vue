@@ -4,9 +4,9 @@ import setAuthHeader from "../utils/setAuthHeader"
 export default {
     methods: {
         logoutUser() {
-            localStorage.removeItem('userToken');
-            setAuthHeader(false);
-            window.location.href = "/login"
+            // localStorage.removeItem('userToken');
+            // setAuthHeader(false);
+            this.$router.push("/login")
         }
     }
 }
@@ -96,7 +96,7 @@ export default {
                         <!-- <ul class="cat-sub-menu"> -->
                         <ul>
                             <li>
-                                <a href="#" @click="logoutUser">Logout</a>
+                                <router-link to="#" @click="logoutUser">Logout</router-link>
                             </li>
                         </ul>
                     </li>

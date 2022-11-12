@@ -19,6 +19,7 @@ export default {
                     password: this.password
                 }).then(response => {
                     this.isSuccess = true
+                    this.$router.push("/login")
                     // console.log(response.data)
                 })
         },

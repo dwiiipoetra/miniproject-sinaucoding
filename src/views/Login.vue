@@ -20,6 +20,7 @@ export default {
           localStorage.setItem("userToken", response.data.data.token);
           // set token as default header
           setAuthHeader(response.data.data.token);
+          this.$router.push("/")
         }).catch((err) => console.log(err))
     }
   }

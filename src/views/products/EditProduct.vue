@@ -10,7 +10,7 @@ export default {
     },
     data() {
         return {
-            id: "",
+            id: this.$route.params.id,
             newProductName: "",
             newPrice: "",
             newStock: "",
@@ -22,7 +22,6 @@ export default {
         };
     },
     created() {
-        this.id = this.$route.params.id
         axios.get(`barang/find-by-id/${this.id}`).then(response => {
             // console.log(response.data.data.supplier)
             this.newProductName = response.data.data.namaBarang;
@@ -63,7 +62,6 @@ export default {
                 supplier: this.selectedSupplier
             }
             // console.log(objProduct);
-            this.id = this.$route.params.id
             axios.put(`barang/update/${this.id}`, objProduct)
                 .then(response => {
                     this.isSuccess = true
