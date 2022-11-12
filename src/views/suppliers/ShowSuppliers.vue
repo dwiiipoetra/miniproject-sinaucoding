@@ -48,7 +48,10 @@ export default {
             <!-- ! Main -->
             <main class="main users chart-page" id="skip-target">
                 <div class="container">
-                    <h2 class="main-title">Suppliers</h2>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="main-title" style="margin-bottom:0">Suppliers Data</h2>
+                        <input type="text" class="form-control" placeholder="Search Suppliers ..." style="width:400px;">
+                    </div>
 
                     <div class="row">
                         <div class="col-lg-3">

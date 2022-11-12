@@ -17,8 +17,11 @@ export default {
         this.getShowProducts()
     }, methods: {
         async getShowProducts() {
-            await axios.get("barang/find-all", { params: { offset: 0, limit: 20 } })
-                .then(response => { this.showProducts = response.data.data })
+            await axios.get("barang/find-all", { params: { offset: 0, limit: 10 } })
+                .then(response => {
+                    this.showProducts = response.data.data
+                    console.log(response.data)
+                })
                 .catch(err => console.log(err.response))
         },
         deleteProduct(id) {
@@ -48,7 +51,10 @@ export default {
             <!-- ! Main -->
             <main class="main users chart-page" id="skip-target">
                 <div class="container">
-                    <h2 class="main-title">Products</h2>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="main-title" style="margin-bottom:0">Products Data</h2>
+                        <input type="text" class="form-control" placeholder="Search Products ..." style="width:400px;">
+                    </div>
 
                     <div class="row">
                         <div class="col-lg-3">
