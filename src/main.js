@@ -1,3 +1,10 @@
+// redirect page ke list data setelah add/edit/delete
+// kurangin loop di list product + relasi kurangin v-for
+// show supplier when edit product
+// redirect login logout
+// fix bug javascript template
+// pagination
+
 import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";

@@ -18,22 +18,18 @@ export default {
     }, methods: {
         getShowProducts() {
             axios.get("barang/find-all", { params: { offset: 0, limit: 20 } })
-                .then(response => this.formatShowProducts(response.data))
+                .then(response => { this.showProducts = response.data.data })
                 .catch(err => console.log(err.response))
         },
-        formatShowProducts(products) {
-            for (let key in products) {
-                this.showProducts.push({ ...products[key], id: key })
-            }
-            // console.log(this.showProducts)
-        },
-        iterateIndex: function (index) {
-            return Number(index) + 1
-        },
         deleteProduct(id) {
+            let self = this
             axios.delete(`barang/delete/${id}`)
                 .then(response => {
-                    this.isSuccess = true
+                    self.isSuccess = true
+                    self.getShowProducts()
+                    self.formatShowProducts()
+                    self.iterateIndex()
+                    self.$router.push('/products')
                     // console.log(response.data)
                 })
                 .catch(err => console.log(err.response))
@@ -82,8 +78,8 @@ export default {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(product, i) in showProducts[0]" :key="product.id">
-                                            <td>{{ iterateIndex(i) }}
+                                        <tr v-for="(product, i) in showProducts" :key="product.id">
+                                            <td>{{ i += 1 }}
 
                                                 <!-- <label class="users-table__checkbox">
                                                     <input type="checkbox" class="check">
@@ -111,21 +107,9 @@ export default {
                                             <td>{{ product.namaBarang }}</td>
                                             <td>{{ product.stok }} pcs</td>
                                             <td>{{ product.harga }}</td>
-                                            <td>
-                                                <template v-for="sup in product" :key="sup.id">
-                                                    {{ sup.namaSupplier }}
-                                                </template>
-                                            </td>
-                                            <td>
-                                                <template v-for="sup in product" :key="sup.id">
-                                                    {{ sup.alamat }}
-                                                </template>
-                                            </td>
-                                            <td>
-                                                <template v-for="sup in product" :key="sup.id">
-                                                    {{ sup.noTelp }}
-                                                </template>
-                                            </td>
+                                            <td>{{ product.supplier.namaSupplier }}</td>
+                                            <td>{{ product.supplier.alamat }}</td>
+                                            <td>{{ product.supplier.noTelp }}</td>
                                             <td>
                                                 <span class="p-relative">
                                                     <button class="dropdown-btn transparent-btn" type="button"

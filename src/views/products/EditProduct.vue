@@ -31,7 +31,7 @@ export default {
         })
     },
     mounted() {
-        axios.get("supplier/find-all", { params: { offset: 0, limit: 100 } }).then((response) => {
+        axios.get("supplier/find-all", { params: { offset: 0, limit: 500 } }).then((response) => {
             let datas = response.data.data;
             // show v-select
             datas.forEach((item) => {

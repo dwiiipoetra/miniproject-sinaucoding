@@ -47,7 +47,6 @@ export default {
         onAddProduct() {
             const objProduct = {
                 harga: this.price,
-                id: "",
                 namaBarang: this.productName,
                 stok: this.stock,
                 supplier: this.selectedSupplier
@@ -68,7 +67,6 @@ export default {
             this.selectedSupplier = datas.find(data => data.id === value)
             // console.log(this.selectedSupplier)
         }
-
     }
 }
 </script>

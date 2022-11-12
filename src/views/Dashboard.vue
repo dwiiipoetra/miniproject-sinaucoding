@@ -19,28 +19,13 @@ export default {
     }, methods: {
         getShowProducts() {
             axios.get("barang/find-all", { params: { offset: 0, limit: 10 } })
-                .then(response => this.formatShowProducts(response.data))
+                .then(response => { this.showProducts = response.data.data })
                 .catch(err => console.log(err.response))
-        },
-        formatShowProducts(products) {
-            for (let key in products) {
-                this.showProducts.push({ ...products[key], id: key })
-            }
-            // console.log(this.showProducts)
         },
         getshowSuppliers() {
             axios.get("supplier/find-all", { params: { offset: 0, limit: 10 } })
-                .then(response => this.formatshowSuppliers(response.data))
+                .then(response => { this.showSuppliers = response.data.data })
                 .catch(err => console.log(err.response))
-        },
-        formatshowSuppliers(suppliers) {
-            for (let key in suppliers) {
-                this.showSuppliers.push({ ...suppliers[key], id: key })
-            }
-            // console.log(this.showSuppliers)
-        },
-        iterateIndex: function (index) {
-            return Number(index) + 1
         }
     }
 }
@@ -78,27 +63,15 @@ export default {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(product, i) in showProducts[0]" :key="product.id">
-                                            <td>{{ iterateIndex(i) }}
+                                        <tr v-for="(product, i) in showProducts" :key="product.id">
+                                            <td>{{ i += 1 }}
                                             </td>
                                             <td>{{ product.namaBarang }}</td>
                                             <td>{{ product.stok }} pcs</td>
                                             <td>{{ product.harga }}</td>
-                                            <td>
-                                                <template v-for="sup in product" :key="sup.id">
-                                                    {{ sup.namaSupplier }}
-                                                </template>
-                                            </td>
-                                            <td>
-                                                <template v-for="sup in product" :key="sup.id">
-                                                    {{ sup.alamat }}
-                                                </template>
-                                            </td>
-                                            <td>
-                                                <template v-for="sup in product" :key="sup.id">
-                                                    {{ sup.noTelp }}
-                                                </template>
-                                            </td>
+                                            <td>{{ product.supplier.namaSupplier }}</td>
+                                            <td> {{ product.supplier.alamat }}</td>
+                                            <td> {{ product.supplier.noTelp }}</td>
                                             <td>
                                                 <span class="p-relative">
                                                     <button class="dropdown-btn transparent-btn" type="button"
@@ -135,8 +108,8 @@ export default {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(supplier, i) in showSuppliers[0]" :key="supplier.id">
-                                            <td>{{ iterateIndex(i) }}</td>
+                                        <tr v-for="(supplier, i) in showSuppliers" :key="supplier.id">
+                                            <td>{{ i += 1 }}</td>
                                             <td>{{ supplier.namaSupplier }}</td>
                                             <td>{{ supplier.alamat }}</td>
                                             <td>{{ supplier.noTelp }}</td>
@@ -147,18 +120,6 @@ export default {
                                                         <div class="sr-only">More info</div>
                                                         <i data-feather="more-horizontal" aria-hidden="true"></i>
                                                     </button>
-                                                    <!-- <ul class="users-item-dropdown dropdown"> -->
-                                                    <ul>
-                                                        <li>
-                                                            <router-link :to="`/supplier/${supplier.id}`">Edit
-                                                            </router-link>
-                                                        </li>
-                                                        <!-- <li><a href="##">Quick edit</a></li> -->
-                                                        <li>
-                                                            <!-- <router-link :to="`/delete-supplier/${product.id}`">Delete
-                                                            </router-link> -->
-                                                        </li>
-                                                    </ul>
                                                 </span>
                                             </td>
                                         </tr>

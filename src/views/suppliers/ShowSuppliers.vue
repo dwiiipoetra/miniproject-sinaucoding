@@ -18,17 +18,8 @@ export default {
     }, methods: {
         getshowSuppliers() {
             axios.get("supplier/find-all", { params: { offset: 0, limit: 20 } })
-                .then(response => this.formatshowSuppliers(response.data))
+                .then(response => { this.showSuppliers = response.data.data })
                 .catch(err => console.log(err.response))
-        },
-        formatshowSuppliers(suppliers) {
-            for (let key in suppliers) {
-                this.showSuppliers.push({ ...suppliers[key], id: key })
-            }
-            // console.log(this.showSuppliers)
-        },
-        iterateIndex: function (index) {
-            return Number(index) + 1
         },
         deleteSupplier(id) {
             axios.delete(`supplier/delete/${id}`)
@@ -74,8 +65,8 @@ export default {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(supplier, i) in showSuppliers[0]" :key="supplier.id">
-                                            <td>{{ iterateIndex(i) }}</td>
+                                        <tr v-for="(supplier, i) in showSuppliers" :key="supplier.id">
+                                            <td>{{ i += 1 }}</td>
                                             <td>{{ supplier.namaSupplier }}</td>
                                             <td>{{ supplier.alamat }}</td>
                                             <td>{{ supplier.noTelp }}</td>
