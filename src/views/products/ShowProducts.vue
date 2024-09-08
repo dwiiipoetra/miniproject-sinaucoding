@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar.vue"
 import MainNav from "../../components/MainNav.vue"
 import Footer from "../../components/Footer.vue";
 import axios from "axios";
+import productsData from "../../data.json"
 
 export default {
     components: {
@@ -17,12 +18,13 @@ export default {
         this.getShowProducts()
     }, methods: {
         async getShowProducts() {
-            await axios.get("barang/find-all", { params: { offset: 0, limit: 10 } })
-                .then(response => {
-                    this.showProducts = response.data.data
-                    console.log(response.data)
-                })
-                .catch(err => console.log(err.response))
+            // await axios.get("barang/find-all", { params: { offset: 0, limit: 10 } })
+            //     .then(response => {
+            //         this.showProducts = response.data.data
+                    this.showProducts = productsData
+            //         console.log(response.data)
+            //     })
+            //     .catch(err => console.log(err.response))
         },
         deleteProduct(id) {
             axios.delete(`barang/delete/${id}`)
@@ -110,9 +112,12 @@ export default {
                                             <td>{{ product.namaBarang }}</td>
                                             <td>{{ product.stok }} pcs</td>
                                             <td>{{ product.harga }}</td>
-                                            <td>{{ product.supplier.namaSupplier }}</td>
+                                            <!-- <td>{{ product.supplier.namaSupplier }}</td>
                                             <td>{{ product.supplier.alamat }}</td>
-                                            <td>{{ product.supplier.noTelp }}</td>
+                                            <td>{{ product.supplier.noTelp }}</td> -->
+                                            <td>{{ product.namaSupplier }}</td>
+                                            <td>{{ product.alamatSupplier }}</td>
+                                            <td>{{ product.telponSupplier }}</td>
                                             <td>
                                                 <span class="p-relative">
                                                     <button class="dropdown-btn transparent-btn" type="button"

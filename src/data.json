@@ -1,0 +1,202 @@
+[
+    {
+        "namaBarang": "Acme Widget",
+        "stok": 100,
+        "harga": 29.99,
+        "namaSupplier": "John Smith",
+        "alamatSupplier": "123 Elm St, Springfield",
+        "telponSupplier": "555-1234"
+    },
+    {
+        "namaBarang": "Beta Gadget",
+        "stok": 200,
+        "harga": 19.99,
+        "namaSupplier": "Jane Doe",
+        "alamatSupplier": "456 Oak St, Shelbyville",
+        "telponSupplier": "555-5678"
+    },
+    {
+        "namaBarang": "Gamma Device",
+        "stok": 150,
+        "harga": 39.99,
+        "namaSupplier": "Alice Johnson",
+        "alamatSupplier": "789 Pine St, Capital City",
+        "telponSupplier": "555-8765"
+    },
+    {
+        "namaBarang": "Delta Tool",
+        "stok": 120,
+        "harga": 49.99,
+        "namaSupplier": "Bob Brown",
+        "alamatSupplier": "101 Maple St, Springfield",
+        "telponSupplier": "555-4321"
+    },
+    {
+        "namaBarang": "Epsilon Apparatus",
+        "stok": 80,
+        "harga": 59.99,
+        "namaSupplier": "Mary Davis",
+        "alamatSupplier": "202 Birch St, Shelbyville",
+        "telponSupplier": "555-6789"
+    },
+    {
+        "namaBarang": "Zeta Instrument",
+        "stok": 90,
+        "harga": 25.99,
+        "namaSupplier": "James Wilson",
+        "alamatSupplier": "303 Cedar St, Capital City",
+        "telponSupplier": "555-3456"
+    },
+    {
+        "namaBarang": "Eta Equipment",
+        "stok": 110,
+        "harga": 34.99,
+        "namaSupplier": "Linda Martinez",
+        "alamatSupplier": "404 Spruce St, Springfield",
+        "telponSupplier": "555-6543"
+    },
+    {
+        "namaBarang": "Theta Contraption",
+        "stok": 70,
+        "harga": 22.99,
+        "namaSupplier": "Michael Anderson",
+        "alamatSupplier": "505 Fir St, Shelbyville",
+        "telponSupplier": "555-7890"
+    },
+    {
+        "namaBarang": "Iota Mechanism",
+        "stok": 130,
+        "harga": 31.99,
+        "namaSupplier": "Sarah Lee",
+        "alamatSupplier": "606 Willow St, Capital City",
+        "telponSupplier": "555-9876"
+    },
+    {
+        "namaBarang": "Kappa Apparatus",
+        "stok": 60,
+        "harga": 44.99,
+        "namaSupplier": "David Thompson",
+        "alamatSupplier": "707 Elm St, Springfield",
+        "telponSupplier": "555-1357"
+    },
+    {
+        "namaBarang": "Lambda Gadget",
+        "stok": 140,
+        "harga": 27.99,
+        "namaSupplier": "Karen White",
+        "alamatSupplier": "808 Oak St, Shelbyville",
+        "telponSupplier": "555-2468"
+    },
+    {
+        "namaBarang": "Mu Device",
+        "stok": 75,
+        "harga": 32.99,
+        "namaSupplier": "Paul Harris",
+        "alamatSupplier": "909 Pine St, Capital City",
+        "telponSupplier": "555-3691"
+    },
+    {
+        "namaBarang": "Nu Tool",
+        "stok": 55,
+        "harga": 41.99,
+        "namaSupplier": "Laura Clark",
+        "alamatSupplier": "1010 Maple St, Springfield",
+        "telponSupplier": "555-4826"
+    },
+    {
+        "namaBarang": "Xi Instrument",
+        "stok": 95,
+        "harga": 19.99,
+        "namaSupplier": "Daniel Lewis",
+        "alamatSupplier": "1111 Birch St, Shelbyville",
+        "telponSupplier": "555-5790"
+    },
+    {
+        "namaBarang": "Omicron Equipment",
+        "stok": 85,
+        "harga": 55.99,
+        "namaSupplier": "Jessica Walker",
+        "alamatSupplier": "1212 Cedar St, Capital City",
+        "telponSupplier": "555-6901"
+    },
+    {
+        "namaBarang": "Pi Mechanism",
+        "stok": 110,
+        "harga": 29.99,
+        "namaSupplier": "Robert Young",
+        "alamatSupplier": "1313 Spruce St, Springfield",
+        "telponSupplier": "555-8012"
+    },
+    {
+        "namaBarang": "Rho Apparatus",
+        "stok": 120,
+        "harga": 24.99,
+        "namaSupplier": "Emily King",
+        "alamatSupplier": "1414 Fir St, Shelbyville",
+        "telponSupplier": "555-9123"
+    },
+    {
+        "namaBarang": "Sigma Device",
+        "stok": 65,
+        "harga": 39.99,
+        "namaSupplier": "Andrew Wright",
+        "alamatSupplier": "1515 Willow St, Capital City",
+        "telponSupplier": "555-1234"
+    },
+    {
+        "namaBarang": "Tau Tool",
+        "stok": 140,
+        "harga": 28.99,
+        "namaSupplier": "Sophia Scott",
+        "alamatSupplier": "1616 Elm St, Springfield",
+        "telponSupplier": "555-2345"
+    },
+    {
+        "namaBarang": "Upsilon Gadget",
+        "stok": 90,
+        "harga": 48.99,
+        "namaSupplier": "Chris Adams",
+        "alamatSupplier": "1717 Oak St, Shelbyville",
+        "telponSupplier": "555-3456"
+    },
+    {
+        "namaBarang": "Phi Apparatus",
+        "stok": 75,
+        "harga": 52.99,
+        "namaSupplier": "Olivia Baker",
+        "alamatSupplier": "1818 Pine St, Capital City",
+        "telponSupplier": "555-4567"
+    },
+    {
+        "namaBarang": "Chi Mechanism",
+        "stok": 130,
+        "harga": 33.99,
+        "namaSupplier": "Matthew Carter",
+        "alamatSupplier": "1919 Maple St, Springfield",
+        "telponSupplier": "555-5678"
+    },
+    {
+        "namaBarang": "Psi Device",
+        "stok": 85,
+        "harga": 27.99,
+        "namaSupplier": "Nancy Nelson",
+        "alamatSupplier": "2020 Birch St, Shelbyville",
+        "telponSupplier": "555-6789"
+    },
+    {
+        "namaBarang": "Omega Tool",
+        "stok": 105,
+        "harga": 36.99,
+        "namaSupplier": "John Robinson",
+        "alamatSupplier": "2121 Cedar St, Capital City",
+        "telponSupplier": "555-7890"
+    },
+    {
+        "namaBarang": "Alpha Gadget",
+        "stok": 60,
+        "harga": 43.99,
+        "namaSupplier": "Anies Baswedan",
+        "alamatSupplier": "2121 Cedar St, Jakarta City",
+        "telponSupplier": "041-5460"
+    }
+]
